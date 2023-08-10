@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { StatisticsTitle, Statistic } from './Feedback.styled';
 
 export const Statistics = ({
-  good,
-  neutral,
-  bad,
+  statistics,
   countTotalFeedback,
   positivePercentage,
 }) => {
+  const { good, bad, neutral } = statistics;
   return (
     <>
       <StatisticsTitle>Statistics</StatisticsTitle>
@@ -23,9 +22,13 @@ export const Statistics = ({
 };
 
 Statistics.propTypes = {
-  good: PropTypes.number.isRequired,
-  neutral: PropTypes.number.isRequired,
-  bad: PropTypes.number.isRequired,
+  statistics: PropTypes.arrayOf(
+    PropTypes.shape({
+      good: PropTypes.number.isRequired,
+      neutral: PropTypes.number.isRequired,
+      bad: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   total: PropTypes.number,
   positivePercentage: PropTypes.string,
 };
